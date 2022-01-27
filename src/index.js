@@ -4,50 +4,23 @@ import './index.css';
 
 
 
-function App(){
-  const[year,setYear] = useState(2050);
-  const[manager, setManager ] = useState("Alex");
-  const [status,setStatus] = useState("Open")
-  let button;
-  let nextManager;
-  if (status ==="Open") {
-    button = <button onClick={() => setStatus("Close")}>Close</button>
-  }else if (status ==="Close"){
-    button = <button onClick={() => setStatus("Open")}>Open</button>
-  }else{
-    button = <button onClick={() => setStatus("Open")}>Open</button>
-  }
+function Checkbox(){
+  const [checked,setChecked] = useState(false);
 
-  if(manager ==="Alex"){
-    nextManager =<button onClick={() => setManager("Rachel")}>Change Manager</button>;
-  }else{
-    nextManager =<button onClick={() => setManager("Alex")}>Change Manager</button>;
-  }
-  
+  useEffect(() => {
+    alert(`checked: ${checked.toString()}`);
+  });
+
   return(
     <>
-      <div>
-        <h1>Year : {year}</h1>
-        <button onClick={() => setYear(year + 1)}>New year</button>
-      </div>
-      <div>
-        <h1>Manager on duty:{manager}</h1>
-        {nextManager}
-      </div>
-      <div>
-        <h1>Status : {status}</h1>
-        {button}
-        <button onClick={() => setStatus("Back in 5 min")}>Break</button>
-      </div>
+      <input type="checkbox" value={checked} onChange={()=>setChecked(checked => !checked)} />
+      {checked ? "checked" : "not checked"}
     </>
-    
   );
-
 }
 
-
 ReactDOM.render(
-  <App />,
+  <Checkbox />,
   document.getElementById('root')
 );
 
